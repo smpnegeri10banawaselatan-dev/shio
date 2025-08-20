@@ -2,22 +2,21 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>2D Shio Cocok</title>
+<title>Matriks 2D Shio Cocok</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+  body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+  h2 { text-align: center; margin-bottom: 20px; }
   table { border-collapse: collapse; margin: auto; }
-  th, td { border: 1px solid #ccc; text-align: center; padding: 8px; width: 40px; height: 40px; cursor: pointer; }
+  th, td { border: 1px solid #ccc; width: 40px; height: 40px; text-align: center; }
   th { background: #ffcc00; }
   .cocok { background: #4caf50; color: white; font-weight: bold; }
-  .keterangan { text-align: center; margin-top: 20px; font-weight: bold; }
+  .tidak { background: #f44336; color: white; font-weight: bold; }
 </style>
 </head>
 <body>
 
-<h2 style="text-align:center;">Matriks 2D Shio Cocok</h2>
-
+<h2>Matriks 2D Shio Cocok</h2>
 <div id="matriks-container"></div>
-<div class="keterangan" id="keterangan">Hover pada sel untuk melihat Shio Cocok</div>
 
 <script>
 const shioData = [
@@ -35,7 +34,7 @@ const shioData = [
   {id:12, main:['12','3','9'], peluang:['1','3','5','7','12','2','4','6','8']},
 ];
 
-// buat tabel 2D
+// buat tabel
 const container = document.getElementById('matriks-container');
 let html = '<table><thead><tr><th>Shio\\Shio</th>';
 for(let i=1;i<=12;i++) html += `<th>${i}</th>`;
@@ -44,26 +43,13 @@ html += '</tr></thead><tbody>';
 for(let i=0;i<12;i++){
   html += `<tr><th>${i+1}</th>`;
   for(let j=0;j<12;j++){
-    // cek apakah ada angka main[i] yang sama dengan peluang[j]
     const cocok = shioData[i].main.some(num => shioData[j].peluang.includes(num));
-    html += `<td class="${cocok ? 'cocok':''}" data-main="${i+1}" data-peluang="${j+1}">${cocok ? '✓':''}</td>`;
+    html += `<td class="${cocok ? 'cocok':'tidak'}">${cocok ? '✓':'X'}</td>`;
   }
   html += '</tr>';
 }
 html += '</tbody></table>';
 container.innerHTML = html;
-
-// interaktif hover
-document.querySelectorAll('td.cocok').forEach(td => {
-  td.addEventListener('mouseenter', () => {
-    const main = td.dataset.main;
-    const peluang = td.dataset.peluang;
-    document.getElementById('keterangan').textContent = `Shio Main ${main} cocok dengan Shio Peluang ${peluang}`;
-  });
-  td.addEventListener('mouseleave', () => {
-    document.getElementById('keterangan').textContent = 'Hover pada sel untuk melihat Shio Cocok';
-  });
-});
 </script>
 
 </body>
