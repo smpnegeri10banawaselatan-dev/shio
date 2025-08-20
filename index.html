@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Tabel Shio Interaktif</title>
+  <title>12 Shio Main Interaktif</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,14 +11,21 @@
     }
     h2 {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 30px;
+      color: #333;
+    }
+    .shio-block {
+      background: #fff;
+      padding: 15px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      width: 90%;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
-      background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      margin: 10px 0;
     }
     th, td {
       border: 1px solid #ccc;
@@ -29,156 +36,130 @@
     th {
       background: #ffcc00;
     }
-    .utama {
-      background: #4caf50 !important;
-      color: white;
+    .utama { background: #4caf50 !important; color: white; font-weight: bold; }
+    .cadangan { background: #f57c00 !important; color: white; font-style: italic; }
+    .highlight td { background: #d1ecf1 !important; }
+    .keterangan {
+      margin-top: 8px;
       font-weight: bold;
-    }
-    .cadangan {
-      background: #f57c00 !important;
-      color: white;
-      font-style: italic;
-    }
-    .highlight td {
-      background: #d1ecf1 !important;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-  <h2>Tabel Shio Main</h2>
-  <table id="shioTable">
-    <thead>
-      <tr>
-        <th>Shio</th>
-        <th>Kelompok</th>
-        <th>Shio Main</th>
-        <th>Shio Mati</th>
-        <th>Keterangan</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Shio 1 -->
-      <tr data-shio="1"><td rowspan="3">1</td><td>I</td><td>1 4 10</td><td>7</td><td></td></tr>
-      <tr data-shio="1"><td>II</td><td>2 8 11</td><td>5</td><td></td></tr>
-      <tr data-shio="1"><td>III</td><td>3 9 12</td><td>6</td><td></td></tr>
-      <!-- Shio 2 -->
-      <tr data-shio="2"><td rowspan="3">2</td><td>I</td><td>4 10 1</td><td>7</td><td></td></tr>
-      <tr data-shio="2"><td>II</td><td>5 11 2</td><td>8</td><td></td></tr>
-      <tr data-shio="2"><td>III</td><td>3 9 12</td><td>6</td><td></td></tr>
-      <!-- Shio 3 -->
-      <tr data-shio="3"><td rowspan="3">3</td><td>I</td><td>1 4 10</td><td>7</td><td></td></tr>
-      <tr data-shio="3"><td>II</td><td>2 5 11</td><td>8</td><td></td></tr>
-      <tr data-shio="3"><td>III</td><td>3 6 12</td><td>9</td><td></td></tr>
-      <!-- Shio 4 -->
-      <tr data-shio="4"><td rowspan="3">4</td><td>I</td><td>1 4 10</td><td>7</td><td></td></tr>
-      <tr data-shio="4"><td>II</td><td>2 5 11</td><td>8</td><td></td></tr>
-      <tr data-shio="4"><td>III</td><td>3 6 12</td><td>9</td><td></td></tr>
-      <!-- Shio 5 -->
-      <tr data-shio="5"><td rowspan="3">5</td><td>I</td><td>1 4 7</td><td>10</td><td></td></tr>
-      <tr data-shio="5"><td>II</td><td>2 5 8</td><td>11</td><td></td></tr>
-      <tr data-shio="5"><td>III</td><td>3 6 12</td><td>9</td><td></td></tr>
-      <!-- Shio 6 -->
-      <tr data-shio="6"><td rowspan="3">6</td><td>I</td><td>1 4 7</td><td>10</td><td></td></tr>
-      <tr data-shio="6"><td>II</td><td>2 5 8</td><td>11</td><td></td></tr>
-      <tr data-shio="6"><td>III</td><td>3 6 9</td><td>12</td><td></td></tr>
-      <!-- Shio 7 -->
-      <tr data-shio="7"><td rowspan="3">7</td><td>I</td><td>4 7 10</td><td>1</td><td></td></tr>
-      <tr data-shio="7"><td>II</td><td>5 11 2</td><td>8</td><td></td></tr>
-      <tr data-shio="7"><td>III</td><td>6 9 12</td><td>3</td><td></td></tr>
-      <!-- Shio 8 -->
-      <tr data-shio="8"><td rowspan="3">8</td><td>I</td><td>4 7 10</td><td>1</td><td></td></tr>
-      <tr data-shio="8"><td>II</td><td>5 8 11</td><td>2</td><td></td></tr>
-      <tr data-shio="8"><td>III</td><td>6 9 12</td><td>3</td><td></td></tr>
-      <!-- Shio 9 -->
-      <tr data-shio="9"><td rowspan="3">9</td><td>I</td><td>4 7 10</td><td>1</td><td></td></tr>
-      <tr data-shio="9"><td>II</td><td>8 11 2</td><td>5</td><td></td></tr>
-      <tr data-shio="9"><td>III</td><td>6 9 12</td><td>3</td><td></td></tr>
-      <!-- Shio 10 -->
-      <tr data-shio="10"><td rowspan="3">10</td><td>I</td><td>1 7 10</td><td>4</td><td></td></tr>
-      <tr data-shio="10"><td>II</td><td>5 8 11</td><td>2</td><td></td></tr>
-      <tr data-shio="10"><td>III</td><td>6 9 12</td><td>3</td><td></td></tr>
-      <!-- Shio 11 -->
-      <tr data-shio="11"><td rowspan="3">11</td><td>I</td><td>1 7 10</td><td>4</td><td></td></tr>
-      <tr data-shio="11"><td>II</td><td>5 8 11</td><td>2</td><td></td></tr>
-      <tr data-shio="11"><td>III</td><td>6 9 12</td><td>3</td><td></td></tr>
-      <!-- Shio 12 -->
-      <tr data-shio="12"><td rowspan="3">12</td><td>I</td><td>1 7 10</td><td>4</td><td></td></tr>
-      <tr data-shio="12"><td>II</td><td>5 8 11</td><td>2</td><td></td></tr>
-      <tr data-shio="12"><td>III</td><td>6 9 12</td><td>3</td><td></td></tr>
-    </tbody>
-  </table>
+<script>
+const shioData = [
+  {id:1, main:[['1 4 10','7'],['2 8 11','5'],['3 9 12','6']], peluang:['2 4 6 8','1','5 7 9 11']},
+  {id:2, main:[['2 5 11','8'],['3 9 12','6'],['1 4 10','7']], peluang:['1 3 5 7','2','4 6 8 10']},
+  {id:3, main:[['3 6 12','9'],['1 4 10','7'],['2 5 11','8']], peluang:['2 4 6 8','3','1 5 7 9']},
+  {id:4, main:[['4 7 1','10'],['5 8 2','11'],['6 9 3','12']], peluang:['1 3 5 7','4','2 6 8 10']},
+  {id:5, main:[['5 8 2','11'],['6 9 3','12'],['4 7 1','10']], peluang:['2 4 6 8','5','1 3 7 9']},
+  {id:6, main:[['6 9 3','12'],['4 7 1','10'],['5 8 2','11']], peluang:['1 3 5 7','6','2 4 8 10']},
+  {id:7, main:[['7 10 4','1'],['8 11 5','2'],['9 12 6','3']], peluang:['2 4 6 8','7','1 3 5 9']},
+  {id:8, main:[['8 11 5','2'],['9 12 6','3'],['7 10 4','1']], peluang:['1 3 5 7','8','2 4 6 10']},
+  {id:9, main:[['9 12 6','3'],['7 10 4','1'],['8 11 5','2']], peluang:['2 4 6 8','9','1 3 5 7']},
+  {id:10, main:[['10 1 7','4'],['11 2 8','5'],['12 3 9','6']], peluang:['1 3 5 7','10','2 4 6 8']},
+  {id:11, main:[['11 2 8','5'],['12 3 9','6'],['10 1 7','4']], peluang:['2 4 6 8','11','1 3 5 7']},
+  {id:12, main:[['12 3 9','6'],['10 1 7','4'],['11 2 8','5']], peluang:['1 3 5 7','12','2 4 6 8']},
+];
 
-  <h2>Peluang Shio Main</h2>
-  <table id="peluangTable">
-    <thead>
-      <tr>
-        <th>Genap</th>
-        <th>Shio Keluar</th>
-        <th>Ganjil</th>
-        <th>Keterangan</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-keluar="1"><td>2 4 6 8</td><td>1</td><td>5 7 9 11</td><td></td></tr>
-      <tr data-keluar="2"><td>6 8 10 12</td><td>2</td><td>3 5 7 11</td><td></td></tr>
-      <tr data-keluar="3"><td>2 6 8 12</td><td>3</td><td>5 7 9 11</td><td></td></tr>
-      <tr data-keluar="4"><td>4 6 10 12</td><td>4</td><td>3 5 7 11</td><td></td></tr>
-      <tr data-keluar="5"><td>2 6 8 10</td><td>5</td><td>5 7 9 11</td><td></td></tr>
-      <tr data-keluar="6"><td>4 6 8 12</td><td>6</td><td>3 7 9 11</td><td></td></tr>
-      <tr data-keluar="7"><td>2 4 10 12</td><td>7</td><td>5 7 9 11</td><td></td></tr>
-      <tr data-keluar="8"><td>6 8 10 12</td><td>8</td><td>3 5 7 11</td><td></td></tr>
-      <tr data-keluar="9"><td>2 4 6 8</td><td>9</td><td>5 7 9 11</td><td></td></tr>
-      <tr data-keluar="10"><td>4 8 10 12</td><td>10</td><td>3 5 7 11</td><td></td></tr>
-      <tr data-keluar="11"><td>2 6 10 12</td><td>11</td><td>5 7 9 11</td><td></td></tr>
-      <tr data-keluar="12"><td>4 6 8 12</td><td>12</td><td>3 5 7 11</td><td></td></tr>
-    </tbody>
-  </table>
+shioData.forEach(s => {
+  document.write(`
+    <div class="shio-block" data-shio="${s.id}">
+      <h2>Shio ${s.id}</h2>
+      <table class="main-table">
+        <thead>
+          <tr><th>Kelompok</th><th>Shio Main</th><th>Shio Mati</th></tr>
+        </thead>
+        <tbody>
+          ${s.main.map((row,i)=>`<tr><td>${['I','II','III'][i]}</td><td>${row[0]}</td><td>${row[1]}</td></tr>`).join('')}
+        </tbody>
+      </table>
+      <table class="peluang-table">
+        <thead>
+          <tr><th>Genap</th><th>Shio Keluar</th><th>Ganjil</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${s.peluang[0]}</td>
+            <td>${s.peluang[1]}</td>
+            <td>${s.peluang[2]}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="keterangan">Klik baris untuk melihat Shio Kuat & Lemah</div>
+    </div>
+  `);
+});
+</script>
 
-  <script>
-    // --- Table Shio Main ---
-    const shioRows = document.querySelectorAll("#shioTable tbody tr");
-    shioRows.forEach(row => {
-      row.addEventListener("click", () => {
-        const shio = row.getAttribute("data-shio");
-        shioRows.forEach(r => {
-          r.classList.remove("highlight");
-          r.querySelectorAll("td").forEach(td => td.classList.remove("utama","cadangan"));
-          r.lastElementChild.textContent = "";
-        });
-        shioRows.forEach(r => {
-          if (r.getAttribute("data-shio") === shio) {
-            r.classList.add("highlight");
-            const tds = r.querySelectorAll("td");
-            if (tds.length >= 5) {
-              tds[2].classList.add("utama");
-              tds[3].classList.add("cadangan");
-              tds[4].textContent = "Shio Kuat: " + tds[2].textContent + " | Shio Lemah: " + tds[3].textContent;
-            }
-          }
-        });
+<script>
+document.querySelectorAll(".shio-block").forEach(block => {
+  const mainTable = block.querySelector(".main-table");
+  const peluangTable = block.querySelector(".peluang-table");
+  const ket = block.querySelector(".keterangan");
+
+  function updateHighlight() {
+    // Reset semua highlight
+    mainTable.querySelectorAll("tr").forEach(r => r.classList.remove("highlight"));
+    mainTable.querySelectorAll("td").forEach(td => td.classList.remove("utama","cadangan"));
+    peluangTable.querySelectorAll("tr").forEach(r => r.classList.remove("highlight"));
+    peluangTable.querySelectorAll("td").forEach(td => td.classList.remove("utama"));
+  }
+
+  function cekCocok() {
+    // Ambil semua angka dari Shio Main & Shio Mati
+    const mainAngka = [];
+    mainTable.querySelectorAll("tbody tr").forEach(row => {
+      const tds = row.querySelectorAll("td");
+      mainAngka.push(...tds[1].textContent.split(' '));
+      mainAngka.push(...tds[2].textContent.split(' '));
+    });
+
+    // Ambil semua angka dari tabel Peluang
+    const peluangAngka = [];
+    peluangTable.querySelectorAll("tbody tr").forEach(row => {
+      row.querySelectorAll("td").forEach(td => {
+        peluangAngka.push(...td.textContent.split(' '));
       });
     });
 
-    // --- Table Peluang Shio Main ---
-    const peluangRows = document.querySelectorAll("#peluangTable tbody tr");
-    peluangRows.forEach(row => {
-      row.addEventListener("click", () => {
-        peluangRows.forEach(r => {
-          r.classList.remove("highlight");
-          r.querySelectorAll("td").forEach(td => td.classList.remove("utama"));
-          r.lastElementChild.textContent = "";
-        });
-        row.classList.add("highlight");
-        const tds = row.querySelectorAll("td");
-        if (tds.length === 4) {
-          tds[0].classList.add("utama");
-          tds[2].classList.add("utama");
-          tds[3].textContent = "Shio Kuat: " + tds[0].textContent + " & " + tds[2].textContent;
-        }
-      });
+    // Cari angka yang sama
+    const sama = mainAngka.filter(x => peluangAngka.includes(x));
+
+    // Update keterangan
+    ket.textContent = sama.length ? "Shio Cocok: " + sama.join(', ') : "Tidak ada Shio yang sama";
+  }
+
+  // Klik tabel Main
+  mainTable.querySelectorAll("tbody tr").forEach(row => {
+    row.addEventListener("click", () => {
+      updateHighlight();
+      row.classList.add("highlight");
+      const tds = row.querySelectorAll("td");
+      tds[1].classList.add("utama");
+      tds[2].classList.add("cadangan");
+      cekCocok();
     });
-  </script>
+  });
+
+  // Klik tabel Peluang
+  peluangTable.querySelectorAll("tbody tr").forEach(row => {
+    row.addEventListener("click", () => {
+      updateHighlight();
+      row.classList.add("highlight");
+      const tds = row.querySelectorAll("td");
+      tds[0].classList.add("utama");
+      tds[2].classList.add("utama");
+      cekCocok();
+    });
+  });
+
+  // Cek saat load
+  cekCocok();
+});
+</script>
 
 </body>
 </html>
