@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ekstraksi Spesifik Kolom Sheet</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h2>Ekstraksi Kolom Spesifik dengan Deteksi Duplikat</h2>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>K-E (Kol B)</th>
+        <th>AS + KOP (Kol B)</th>
+        <th>2D SHIO (Kol D)</th>
+        <th>2D AS (Kol B)</th>
+        <!-- Duplikat akan ditambahkan otomatis -->
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const sheetID = '18nXx5IcD80NT1xSkhNM4hcVmoxgzuhD0oioagDfBxBs';
+    const gid = '818262916';
+    const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?gid=${gid}&headers=1`;
+
+    function init() {
+      fetch(sheetURL)
+        .then(res => res.text())
+        .then(txt => {
+          // hapus prefix ")]}'"
+          const jsonText = txt.replace(/^[^\(]*\(/, '').replace(/\);?$/, '');
+          const json = JSON.parse(jsonText);
+          const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ''));
+
+          processRows(rows);
+        }).catch(err => console.error('Fetch error:', err));
+    }
+
+    function processRows(rows) {
+      const tbody = document.querySelector('#dataTable tbody');
+      rows.forEach((row, idx) => {
+        if (idx === 0) return;  // skip header kalau ada
+
+        // Ambil sesuai aturan
+        const colKE = row[1] || '';       // B
+        const colASkop = row[1] || '';    // B
+        const colShio = row[3] || '';     // D
+        const colAS = row[1] || '';       // B
+
+        // kumpulkan semua nilai
+        const values = [colKE, colASkop, colShio, colAS].filter(v => v !== '');
+        // hitung duplikat
+        const counts = values.reduce((a, v) => (a[v] = (a[v] || 0) + 1, a), {});
+        const expanded = [];
+        Object.keys(counts).forEach(v => {
+          for (let i = 0; i < counts[v]; i++) {
+            expanded.push(v);
+          }
+        });
+
+        // buat row
+        const tr = document.createElement('tr');
+        expanded.forEach(val => {
+          const td = document.createElement('td');
+          td.textContent = val;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
