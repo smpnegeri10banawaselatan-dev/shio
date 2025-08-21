@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Data 2D FINAL SHIO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- PapaParse untuk parsing CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-700 text-white flex flex-col p-4 space-y-4">
+      <h2 class="text-xl font-bold">📊 Dashboard</h2>
+      <nav class="flex flex-col space-y-2">
+        <a href="#" class="hover:bg-blue-600 px-3 py-2 rounded">🏠 Beranda</a>
+        <a href="#" class="hover:bg-blue-600 px-3 py-2 rounded">📋 Data 2D Final Shio</a>
+        <a href="#" class="hover:bg-blue-600 px-3 py-2 rounded">⚙️ Pengaturan</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <h1 class="text-2xl font-bold mb-4 text-gray-800">Data 2D FINAL SHIO</h1>
+
+      <div class="overflow-x-auto bg-white p-4 rounded-lg shadow">
+        <table id="dataTable" class="min-w-full border border-gray-300 text-sm">
+          <thead class="bg-blue-600 text-white"></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const sheetUrl = "https://docs.google.com/spreadsheets/d/18nXx5IcD80NT1xSkhNM4hcVmoxgzuhD0oioagDfBxBs/gviz/tq?tqx=out:csv&sheet=2D%20FINAL%20SHIO";
+
+    Papa.parse(sheetUrl, {
+      download: true,
+      header: true,
+      complete: function(results) {
+        const data = results.data;
+        const table = document.getElementById("dataTable");
+        const thead = table.querySelector("thead");
+        const tbody = table.querySelector("tbody");
+
+        // Ambil hanya kolom A, B, O sampai X
+        const selectedCols = Object.keys(data[0]).filter((col, idx) => {
+          return idx === 0 || idx === 1 || (idx >= 14 && idx <= 23);
+        });
+
+        // Buat header tabel + input filter
+        let headerRow = "<tr>";
+        let filterRow = "<tr>";
+        selectedCols.forEach((col, colIndex) => {
+          headerRow += `<th class="border px-3 py-2">${col}</th>`;
+          filterRow += `<th class="border px-2 py-1">
+                          <input type="text" data-col="${colIndex}" 
+                                 class="filter-input w-full border rounded px-1 py-0.5 text-gray-700 text-xs" 
+                                 placeholder="Cari ${col}">
+                        </th>`;
+        });
+        headerRow += "</tr>";
+        filterRow += "</tr>";
+        thead.innerHTML = headerRow + filterRow;
+
+        // Buat body tabel
+        function renderTable(filteredData) {
+          tbody.innerHTML = "";
+          filteredData.forEach(row => {
+            let rowHtml = "<tr>";
+            selectedCols.forEach(col => {
+              rowHtml += `<td class="border px-3 py-2">${row[col] || ""}</td>`;
+            });
+            rowHtml += "</tr>";
+            tbody.innerHTML += rowHtml;
+          });
+        }
+
+        renderTable(data);
+
+        // Event listener untuk filter
+        document.querySelectorAll(".filter-input").forEach(input => {
+          input.addEventListener("input", () => {
+            const filters = {};
+            document.querySelectorAll(".filter-input").forEach(f => {
+              if (f.value.trim() !== "") {
+                filters[f.dataset.col] = f.value.toLowerCase();
+              }
+            });
+
+            const filteredData = data.filter(row => {
+              return selectedCols.every((col, idx) => {
+                if (filters[idx]) {
+                  return (row[col] || "").toString().toLowerCase().includes(filters[idx]);
+                }
+                return true;
+              });
+            });
+
+            renderTable(filteredData);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
